@@ -29,7 +29,7 @@ zabbix_export:
             - type: JSONPATH
               parameters:
                 - $.applicationVersion
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/info'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/info'
           headers:
             - name: Accept
               value: application/json
@@ -55,7 +55,7 @@ zabbix_export:
             - type: JSONPATH
               parameters:
                 - $.data
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites'
           query_fields:
             - name: limit
               value: '200'
@@ -110,6 +110,9 @@ zabbix_export:
           description: 'Trigger ''No Data'' after 30 minutes of missing data'
         - macro: '{$UNIFI_NETWORK_API_ADDRESS}'
           description: 'UniFi Network API Address or Dns Name'
+        - macro: '{$UNIFI_NETWORK_API_PORT}'
+          value: '443'
+          description: 'UniFi Network API Port'
         - macro: '{$UNIFI_NETWORK_API_KEY}'
           description: 'UniFi Network API Key'
     - uuid: a260fd3865014482a08fa362e5da666c
@@ -154,7 +157,7 @@ zabbix_export:
           delay: '{$ITEM_DETAILS.JSON_UPDATE}'
           history: '0'
           value_type: TEXT
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites/{$SITE.ID}/clients/{HOST.HOST}'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites/{$SITE.ID}/clients/{HOST.HOST}'
           headers:
             - name: Accept
               value: application/json
@@ -339,7 +342,7 @@ zabbix_export:
           delay: '{$ITEM_DETAILS.JSON_UPDATE}'
           history: '0'
           value_type: TEXT
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites/{$SITE.ID}/devices/{HOST.HOST}'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites/{$SITE.ID}/devices/{HOST.HOST}'
           headers:
             - name: Accept
               value: application/json
@@ -568,7 +571,7 @@ zabbix_export:
           delay: '{$ITEM_STATISTICS.JSON_UPDATE}'
           history: '0'
           value_type: TEXT
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites/{$SITE.ID}/devices/{HOST.HOST}/statistics/latest'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites/{$SITE.ID}/devices/{HOST.HOST}/statistics/latest'
           headers:
             - name: Accept
               value: application/json
@@ -1107,7 +1110,7 @@ zabbix_export:
                   }
                   
                   return JSON.stringify(obj)
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites/{HOST.HOST}/clients'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites/{HOST.HOST}/clients'
           query_fields:
             - name: limit
               value: '200'
@@ -1193,7 +1196,7 @@ zabbix_export:
                   }
                   
                   return JSON.stringify(obj)
-          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}/proxy/network/integration/v1/sites/{HOST.HOST}/devices'
+          url: 'https://{$UNIFI_NETWORK_API_ADDRESS}:{$UNIFI_NETWORK_API_PORT}/proxy/network/integration/v1/sites/{HOST.HOST}/devices'
           query_fields:
             - name: limit
               value: '200'
